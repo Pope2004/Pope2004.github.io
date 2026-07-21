@@ -14,6 +14,8 @@ type Project = {
   cover: string;
   facts: string[];
   gallery: { src: string; alt: string }[];
+  characterAssets?: { src: string; name: string; state: string }[];
+  environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
 };
 
@@ -79,8 +81,18 @@ const projects: Project[] = [
     description: "围绕角色设定、场景氛围、镜头运动与音画节奏，将分散的 AI 画面组织成具有情绪和连续性的短片。制作覆盖视觉方向、镜头生成、素材筛选与剪映后期。",
     stack: "AI Cinema / Storytelling / Visual Direction / Editing",
     cover: "/portfolio/ai-drama-poster.png",
-    facts: ["古风玄幻叙事", "角色与场景连续性", "AI 视觉生成", "剪映后期成片"],
+    facts: ["古风玄幻叙事", "角色定妆与状态设计", "场景氛围资产", "剪映后期成片"],
     gallery: [{ src: "/portfolio/ai-drama-poster.png", alt: "AI 漫剧古风玄幻场景" }],
+    characterAssets: [
+      { src: "/portfolio/ai-drama-assets/priest.jpg", name: "祭司", state: "角色设定 · 正侧背多视角" },
+      { src: "/portfolio/ai-drama-assets/cen-huashang.jpg", name: "岑华裳", state: "角色设定 · 宫廷礼服" },
+      { src: "/portfolio/ai-drama-assets/cen-yingxue.jpg", name: "岑映雪", state: "角色设定 · 白衣常态" },
+      { src: "/portfolio/ai-drama-assets/xie-zhaotang.jpg", name: "谢照棠", state: "角色设定 · 常态" },
+      { src: "/portfolio/ai-drama-assets/xie-zhaotang-corrupted.jpg", name: "谢照棠", state: "状态设计 · 异化形态" },
+    ],
+    environmentAssets: [
+      { src: "/portfolio/ai-drama-assets/ritual-arena.jpg", alt: "AI 漫剧祭坛场景多镜头氛围板", title: "祭坛场景", note: "核心场景 · 多镜头氛围与构图探索" },
+    ],
     video: "/portfolio/ai-drama-preview.mp4",
   },
 ];
@@ -269,6 +281,38 @@ export function Make(idea) {
             <div className="modal-gallery">
               {selected.gallery.map((image) => <img src={image.src} alt={image.alt} key={image.src} />)}
             </div>
+            {selected.characterAssets && (
+              <section className="character-assets" aria-labelledby="character-assets-title">
+                <div className="asset-heading">
+                  <p>CHARACTER ASSETS</p>
+                  <h3 id="character-assets-title">角色设定与状态资产</h3>
+                  <span>通过定妆、多视角与状态变化，维持角色在连续镜头中的视觉一致性。</span>
+                </div>
+                <div className="character-grid">
+                  {selected.characterAssets.map((asset) => (
+                    <figure className="character-card" key={`${asset.name}-${asset.state}`}>
+                      <img src={asset.src} alt={`${asset.name} ${asset.state}`} />
+                      <figcaption><b>{asset.name}</b><span>{asset.state}</span></figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            )}
+            {selected.environmentAssets && (
+              <section className="environment-assets" aria-labelledby="environment-assets-title">
+                <div className="asset-heading">
+                  <p>ENVIRONMENT ASSETS</p>
+                  <h3 id="environment-assets-title">核心场景资产</h3>
+                  <span>围绕空间结构、光源、法阵和镜头机位，统一关键戏份的环境氛围。</span>
+                </div>
+                {selected.environmentAssets.map((asset) => (
+                  <figure className="environment-card" key={asset.src}>
+                    <img src={asset.src} alt={asset.alt} />
+                    <figcaption><b>{asset.title}</b><span>{asset.note}</span></figcaption>
+                  </figure>
+                ))}
+              </section>
+            )}
             {selected.video && <video controls playsInline preload="metadata" poster={selected.cover} onPlay={() => audioRef.current?.pause()}><source src={selected.video} type="video/mp4" /></video>}
             <div className="modal-footer"><span>{selected.stack}</span><button type="button" onClick={() => setSelected(null)}>返回项目列表 ↑</button></div>
           </article>
