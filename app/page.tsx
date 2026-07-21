@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Project = {
   id: string;
@@ -89,6 +89,24 @@ const tools = ["Product Strategy", "UX / UI", "React", "Godot", "AI Workflow", "
 
 export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.volume = 0.32;
+      try {
+        await audio.play();
+      } catch {
+        setMusicPlaying(false);
+      }
+    } else {
+      audio.pause();
+    }
+  };
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -217,6 +235,26 @@ export function Make(idea) {
         <div className="footer-bottom"><span>© 2026 张朴 · 保持好奇，持续构建。</span><span className="exploring">✦ 正在探索 产品 × 游戏 × AI</span></div>
       </footer>
 
+      <audio
+        ref={audioRef}
+        src="/audio/original-piano-instrumental.mp3"
+        preload="metadata"
+        loop
+        onPlay={() => setMusicPlaying(true)}
+        onPause={() => setMusicPlaying(false)}
+      />
+      <button
+        className={`music-control${musicPlaying ? " is-playing" : ""}`}
+        type="button"
+        onClick={toggleMusic}
+        aria-pressed={musicPlaying}
+        aria-label={musicPlaying ? "暂停背景音乐：Original Piano Instrumental" : "播放背景音乐：Original Piano Instrumental"}
+      >
+        <span className="music-visual" aria-hidden="true"><i /><i /><i /></span>
+        <span className="music-copy"><small>ORIGINAL MUSIC · 张朴</small><b>{musicPlaying ? "正在播放" : "播放钢琴曲"}</b></span>
+        <span className="music-action" aria-hidden="true">{musicPlaying ? "Ⅱ" : "▶"}</span>
+      </button>
+
       {selected && (
         <div className="project-modal" role="dialog" aria-modal="true" aria-label={`${selected.title} 项目详情`} onMouseDown={(event) => event.target === event.currentTarget && setSelected(null)}>
           <article className="modal-panel">
@@ -231,7 +269,7 @@ export function Make(idea) {
             <div className="modal-gallery">
               {selected.gallery.map((image) => <img src={image.src} alt={image.alt} key={image.src} />)}
             </div>
-            {selected.video && <video controls playsInline preload="metadata" poster={selected.cover}><source src={selected.video} type="video/mp4" /></video>}
+            {selected.video && <video controls playsInline preload="metadata" poster={selected.cover} onPlay={() => audioRef.current?.pause()}><source src={selected.video} type="video/mp4" /></video>}
             <div className="modal-footer"><span>{selected.stack}</span><button type="button" onClick={() => setSelected(null)}>返回项目列表 ↑</button></div>
           </article>
         </div>
