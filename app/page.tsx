@@ -14,6 +14,10 @@ type Project = {
   cover: string;
   facts: string[];
   gallery: { src: string; alt: string }[];
+  productBrief?: {
+    intro: string;
+    steps: { number: string; title: string; text: string }[];
+  };
   characterAssets?: { src: string; name: string; state: string }[];
   environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
@@ -60,11 +64,20 @@ const projects: Project[] = [
     category: "AI 产品 / 增长策略",
     title: "Relay Growth",
     status: "◈ 卖家验证阶段",
-    summary: "让 TikTok Shop 卖家知道今天该拍什么。",
-    description: "围绕真实卖家的内容焦虑，设计商品诊断、趋势雷达、7 天内容计划、脚本工坊与数据复盘，把复杂的增长建议转化为可以直接执行的短视频任务。",
+    summary: "把商品与趋势数据，变成卖家今天就能拍的短视频计划。",
+    description: "Relay Growth 是一款面向 TikTok Shop 中小卖家与内容团队的 AI 增长工作台。它围绕真实卖家的内容焦虑，把商品诊断、趋势雷达、7 天内容计划、脚本工坊与数据复盘连接起来，将复杂的增长建议转化为可以直接执行的短视频任务。",
     stack: "AI Product / UX Strategy / Prototyping / TikTok Shop",
     cover: "/portfolio/relay-case.jpg",
     facts: ["商品机会诊断", "7 天内容计划", "逐镜头可拍脚本", "增长复盘闭环"],
+    productBrief: {
+      intro: "卖家不缺泛泛的“多发视频”建议，真正缺的是：这个商品今天应该讲什么、用哪个角度、第一镜怎么拍。Relay 将商品信息、目标受众与平台趋势整理成一条从发现机会到复盘结果的内容生产流程。",
+      steps: [
+        { number: "01", title: "输入商品", text: "补充商品链接、核心卖点、目标市场与现有内容表现。" },
+        { number: "02", title: "发现机会", text: "识别可借势的趋势、用户痛点和更值得测试的内容角度。" },
+        { number: "03", title: "生成内容", text: "产出 7 天计划、逐镜头脚本、口播文案与拍摄提示。" },
+        { number: "04", title: "验证增长", text: "记录发布表现，把有效信号继续反馈给下一轮内容。" },
+      ],
+    },
     gallery: [
       { src: "/portfolio/relay-case.jpg", alt: "Relay Growth 产品案例" },
       { src: "/portfolio/relay-lamp.png", alt: "Relay 桌面灯内容案例" },
@@ -278,6 +291,23 @@ export function Make(idea) {
               <p>{selected.description}</p>
             </div>
             <div className="modal-facts">{selected.facts.map((fact) => <span key={fact}>{fact}</span>)}</div>
+            {selected.productBrief && (
+              <section className="product-brief" aria-labelledby="product-brief-title">
+                <div className="brief-intro">
+                  <p>WHAT RELAY DOES</p>
+                  <h3 id="product-brief-title">这个网站是做什么的？</h3>
+                  <p>{selected.productBrief.intro}</p>
+                </div>
+                <div className="brief-flow">
+                  {selected.productBrief.steps.map((step) => (
+                    <article key={step.number}>
+                      <span>{step.number}</span>
+                      <div><h4>{step.title}</h4><p>{step.text}</p></div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
             <div className="modal-gallery">
               {selected.gallery.map((image) => <img src={image.src} alt={image.alt} key={image.src} />)}
             </div>
