@@ -19,6 +19,7 @@ type Project = {
     steps: { number: string; title: string; text: string }[];
   };
   commerceIntelligence?: boolean;
+  gameOverview?: boolean;
   characterAssets?: { src: string; name: string; state: string }[];
   environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
@@ -32,11 +33,12 @@ const projects: Project[] = [
     category: "游戏设计 / 独立开发",
     title: "余烬牌塔",
     status: "◈ 可玩版本持续迭代",
-    summary: "从规则原型到完整战斗演出的卡牌爬塔。",
-    description: "围绕战斗闭环、随机路线、卡牌与遗物数据结构，建立敌人五姿态、分层场景、卡框、HUD 与 VFX 的完整生产流程。每一次视觉迭代都能回到真实可玩的 Godot 版本。",
+    summary: "在逐渐熄灭的高塔中，用每一次选择构筑自己的战斗方式。",
+    description: "《余烬牌塔》是一款单人卡牌构筑 Roguelike。玩家沿随机路线攀登废塔，在战斗中读取敌人意图、安排有限能量与出牌顺序，并在胜利后选择新卡、遗物和下一条路线。每一局都会形成不同的牌组与风险决策，最终挑战守在塔顶的 Boss。",
     stack: "Godot / Game Design / Art Direction / Content Pipeline",
     cover: "/portfolio/ember-boss-battle.png",
     facts: ["61 张独立卡牌", "20 个遗物", "10 层路线 + Boss", "7 名敌人五姿态"],
+    gameOverview: true,
     gallery: [
       { src: "/portfolio/ember-boss-battle.png", alt: "余烬牌塔 Boss 对战" },
       { src: "/portfolio/ember-cards.png", alt: "余烬牌塔卡牌总览" },
@@ -308,6 +310,30 @@ export function Make(idea) {
               <p>{selected.description}</p>
             </div>
             <div className="modal-facts">{selected.facts.map((fact) => <span key={fact}>{fact}</span>)}</div>
+            {selected.gameOverview && (
+              <section className="game-overview" aria-labelledby="game-overview-title">
+                <div className="game-intro">
+                  <p>ROGUELIKE DECKBUILDER</p>
+                  <h3 id="game-overview-title">让每一张牌，成为继续向上的理由。</h3>
+                  <p>从一套基础卡组出发，在不断变化的高塔中战斗、取舍并重组策略。没有固定答案：更强的卡不一定更适合当前牌组，更危险的路线也可能带来决定胜负的遗物。</p>
+                </div>
+                <div className="game-loop" aria-label="核心玩法循环">
+                  <article><span>01</span><i>路线</i><b>选择下一层</b><p>在战斗、精英、商店、休整与未知事件之间判断风险。</p></article>
+                  <article><span>02</span><i>战斗</i><b>读取敌人意图</b><p>观察敌方即将采取的行动，用有限能量规划攻击与防御。</p></article>
+                  <article><span>03</span><i>构筑</i><b>重组卡牌协同</b><p>围绕伤害、格挡、能量与状态建立能持续运转的组合。</p></article>
+                  <article><span>04</span><i>成长</i><b>获取卡牌与遗物</b><p>让奖励改变下一场战斗，也让牌组逐渐形成独特流派。</p></article>
+                </div>
+                <div className="game-feature-grid">
+                  <article><small>DYNAMIC DECK</small><h4>动态牌组构筑</h4><p>61 张独立卡牌不是简单堆叠数值。每次奖励都要考虑费用曲线、抽牌效率与已有协同，有时拒绝一张牌反而能让牌组更稳定。</p></article>
+                  <article><small>CHANGING ROUTE</small><h4>每局不同的高塔</h4><p>10 层路线重新组合战斗、资源与风险。安全路线帮助保存状态，精英路线则用更高压力换取更强成长。</p></article>
+                  <article><small>READABLE COMBAT</small><h4>可预判的回合战斗</h4><p>敌人通过意图与五种动作姿态传达攻击、防御和受击状态。玩家需要在伤害、格挡和后续回合之间做出明确判断。</p></article>
+                  <article><small>RELIC SYNERGY</small><h4>改变规则的遗物</h4><p>20 个遗物持续影响能量、卡牌和战斗节奏。真正强大的不是单件数值，而是遗物与牌组之间形成的连锁反应。</p></article>
+                  <article><small>RISK & REWARD</small><h4>风险就是玩法</h4><p>生命值不仅是容错，也是可以被经营的资源。多打一场精英、提前进入商店或保留金币，都会改变这一次登塔的走向。</p></article>
+                  <article><small>FINAL ASCENT</small><h4>走向塔顶 Boss</h4><p>普通敌人逐步检验牌组稳定性，最终 Boss 则要求玩家把整局获得的卡牌、遗物与路线收益转化为完整战斗方案。</p></article>
+                </div>
+                <div className="game-loop-line"><span>选择路线</span><i>→</i><span>回合战斗</span><i>→</i><span>获得奖励</span><i>→</i><span>调整牌组</span><i>→</i><b>继续登塔</b></div>
+              </section>
+            )}
             {selected.productBrief && (
               <section className="product-brief" aria-labelledby="product-brief-title">
                 <div className="brief-intro">
