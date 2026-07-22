@@ -18,6 +18,7 @@ type Project = {
     intro: string;
     steps: { number: string; title: string; text: string }[];
   };
+  commerceIntelligence?: boolean;
   characterAssets?: { src: string; name: string; state: string }[];
   environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
@@ -62,16 +63,17 @@ const projects: Project[] = [
   {
     id: "relay",
     number: "03",
-    category: "AI 产品 / 增长策略",
+    category: "电商情报 / AI 产品",
     title: "Relay Growth",
     status: "◈ 卖家验证阶段",
-    summary: "把商品与趋势数据，变成卖家今天就能拍的短视频计划。",
-    description: "Relay Growth 是一款面向 TikTok Shop 中小卖家与内容团队的 AI 增长工作台。它围绕真实卖家的内容焦虑，把商品诊断、趋势雷达、7 天内容计划、脚本工坊与数据复盘连接起来，将复杂的增长建议转化为可以直接执行的短视频任务。",
-    stack: "AI Product / UX Strategy / Prototyping / TikTok Shop",
+    summary: "把零散平台信号，变成卖家可执行的电商内容情报。",
+    description: "Relay Growth 是一套面向 TikTok Shop 中小卖家与内容团队的电商情报系统。它持续整理商品热度、内容缺口、竞品节奏与风险信号，再把情报转译成 7 天拍摄日历、播放预测区间与转化漏斗，让团队知道什么值得拍、何时拍，以及为什么。",
+    stack: "Commerce Intelligence / AI Product / UX Strategy / TikTok Shop",
     cover: "/portfolio/relay-case.jpg",
-    facts: ["商品机会诊断", "7 天内容计划", "逐镜头可拍脚本", "增长复盘闭环"],
+    facts: ["商品热度雷达", "内容机会象限", "竞品视频时间线", "预测与风险信号"],
+    commerceIntelligence: true,
     productBrief: {
-      intro: "卖家不缺泛泛的“多发视频”建议，真正缺的是：这个商品今天应该讲什么、用哪个角度、第一镜怎么拍。Relay 将商品信息、目标受众与平台趋势整理成一条从发现机会到复盘结果的内容生产流程。",
+      intro: "卖家不缺更多数据，缺的是能改变今天拍摄决策的情报。Relay 把热度、竞争、内容机会、预测与风险压缩进同一套判断系统，再输出可以直接执行的拍摄计划。",
       steps: [
         { number: "01", title: "输入商品", text: "补充商品链接、核心卖点、目标市场与现有内容表现。" },
         { number: "02", title: "发现机会", text: "识别可借势的趋势、用户痛点和更值得测试的内容角度。" },
@@ -320,6 +322,46 @@ export function Make(idea) {
                       <div><h4>{step.title}</h4><p>{step.text}</p></div>
                     </article>
                   ))}
+                </div>
+              </section>
+            )}
+            {selected.commerceIntelligence && (
+              <section className="relay-intelligence" aria-labelledby="relay-intelligence-title">
+                <div className="intel-heading">
+                  <div><p>COMMERCE INTELLIGENCE SYSTEM</p><h3 id="relay-intelligence-title">从市场信号到拍摄决策</h3></div>
+                  <span>DEMO MODEL · 概念验证数据</span>
+                </div>
+                <div className="intel-console">
+                  <div className="console-bar"><div><i /><i /><i /></div><b>Relay / Product Intelligence</b><span>US · TikTok Shop · UPDATED 12 MIN AGO</span></div>
+                  <div className="intel-product"><div><small>TRACKING PRODUCT</small><b>Foldable LED Desk Lamp</b></div><span>热度指数 <strong>82</strong>/100</span><em>7D +18.6%</em></div>
+                  <div className="intel-grid">
+                    <article className="intel-card heat-card">
+                      <header><span>01</span><div><b>商品热度雷达</b><small>PRODUCT HEAT RADAR</small></div><em>LIVE</em></header>
+                      <div className="heat-score"><strong>82</strong><span>HIGH<br />MOMENTUM</span></div>
+                      <div className="signal-bars"><span>搜索增速<i><b style={{ width: "86%" }} /></i><em>86</em></span><span>内容增速<i><b style={{ width: "74%" }} /></i><em>74</em></span><span>互动质量<i><b style={{ width: "79%" }} /></i><em>79</em></span><span>竞争强度<i><b style={{ width: "63%" }} /></i><em>63</em></span></div>
+                    </article>
+                    <article className="intel-card quadrant-card">
+                      <header><span>02</span><div><b>内容机会象限</b><small>CONTENT OPPORTUNITY</small></div></header>
+                      <div className="quadrant"><i className="axis-x">竞争强度 →</i><i className="axis-y">需求热度 →</i><span className="q1">桌面焕新<small>91</small></span><span className="q2">小户型<small>84</small></span><span className="q3">护眼实测<small>73</small></span><span className="q4">普通开箱<small>42</small></span></div>
+                    </article>
+                    <article className="intel-card timeline-card">
+                      <header><span>03</span><div><b>竞品视频时间线</b><small>COMPETITOR VIDEO TIMELINE</small></div><em>48H WINDOW</em></header>
+                      <div className="video-timeline"><span><i className="hot" /><b>08:40</b><em>竞品 A · Before / After</em><strong>1.2M</strong></span><span><i className="warm" /><b>13:15</b><em>竞品 B · 小空间桌搭</em><strong>486K</strong></span><span><i className="cool" /><b>20:30</b><em>竞品 C · 护眼对比</em><strong>219K</strong></span></div>
+                    </article>
+                    <article className="intel-card calendar-card">
+                      <header><span>04</span><div><b>7 天拍摄日历</b><small>7-DAY SHOOTING CALENDAR</small></div><em>READY TO SHOOT</em></header>
+                      <div className="shoot-calendar">{["一|痛点切入|桌面太暗", "二|场景对比|开灯前后", "三|参数证明|三档色温", "四|趋势借势|Desk Reset", "五|真人口播|租房桌搭", "六|UGC 复刻|评论问答", "日|复盘迭代|胜出角度"].map((day, index) => { const [date, type, idea] = day.split("|"); return <span className={index === 3 ? "featured" : ""} key={day}><small>DAY {date}</small><b>{type}</b><em>{idea}</em></span>; })}</div>
+                    </article>
+                    <article className="intel-card funnel-card">
+                      <header><span>05</span><div><b>播放预测与转化漏斗</b><small>FORECAST FUNNEL</small></div></header>
+                      <p className="model-note">基于近 30 天同类内容表现的区间测算</p>
+                      <div className="funnel"><span><b>120K—180K</b><small>预计播放</small></span><span><b>5.8—7.4%</b><small>商品点击率</small></span><span><b>3.1—4.6%</b><small>点击转化率</small></span><span><b>220—610</b><small>预计订单</small></span></div>
+                    </article>
+                    <article className="intel-card risk-card">
+                      <header><span>06</span><div><b>红黄绿风险信号</b><small>RISK SIGNALS</small></div></header>
+                      <div className="risk-list"><span className="green"><i />需求窗口<b>可进入</b><small>搜索与互动同步上升</small></span><span className="yellow"><i />内容同质化<b>需差异化</b><small>普通开箱已进入拥挤区</small></span><span className="red"><i />功效宣称<b>高风险</b><small>避免未经验证的护眼承诺</small></span></div>
+                    </article>
+                  </div>
                 </div>
               </section>
             )}
