@@ -21,6 +21,7 @@ type Project = {
   characterAssets?: { src: string; name: string; state: string }[];
   environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
+  externalUrl?: string;
 };
 
 const projects: Project[] = [
@@ -107,6 +108,20 @@ const projects: Project[] = [
       { src: "/portfolio/ai-drama-assets/ritual-arena.jpg", alt: "AI 漫剧祭坛场景多镜头氛围板", title: "祭坛场景", note: "核心场景 · 多镜头氛围与构图探索" },
     ],
     video: "/portfolio/ai-drama-preview.mp4",
+  },
+  {
+    id: "sound-study",
+    number: "05",
+    category: "声音设计 / 生成式交互",
+    title: "SOUND STUDY 001",
+    status: "◈ 实时声音可视化",
+    summary: "一首原创钢琴曲，以及由声音实时驱动的视觉空间。",
+    description: "以张朴原创钢琴曲《Original Piano Instrumental》为核心，通过 Web Audio API 实时分析低频、中频、高频与动态变化，将音乐转译为光环、粒子、章节和空间运动。它不是一段预制动画，而是每次播放都会由真实声音重新生成的视觉现场。",
+    stack: "Original Music / Web Audio / Canvas / Interaction Design",
+    cover: "/portfolio/sound-study-cover.png",
+    facts: ["原创钢琴曲 02:18", "实时频谱分析", "四幕声音旅程", "Canvas 粒子系统"],
+    gallery: [{ src: "/portfolio/sound-study-cover.png", alt: "SOUND STUDY 001 声音可视化体验" }],
+    externalUrl: "https://zhangpu-sound-study.lush-bard-9036.chatgpt.site",
   },
 ];
 
@@ -199,7 +214,7 @@ export function Make(idea) {
         <section className="manifesto" data-reveal>
           <p className="section-index">01 / SELECTED WORK</p>
           <h2>让复杂问题成为<br /><em>清楚、可用的体验。</em></h2>
-          <p>四个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示的完整版本。</p>
+          <p>五个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示的完整版本。</p>
         </section>
 
         <section className="project-section" id="work">
@@ -247,7 +262,7 @@ export function Make(idea) {
             <p>产品构建者、独立游戏开发者，也在探索生成式影像。</p>
             <p>我喜欢把复杂信息整理成容易理解的结构，再亲手把方案推进成可以体验的真实作品。</p>
           </div>
-          <div className="about-stats"><span><b>04</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
+          <div className="about-stats"><span><b>05</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
         </section>
       </div>
 
@@ -344,7 +359,13 @@ export function Make(idea) {
               </section>
             )}
             {selected.video && <video controls playsInline preload="metadata" poster={selected.cover} onPlay={() => audioRef.current?.pause()}><source src={selected.video} type="video/mp4" /></video>}
-            <div className="modal-footer"><span>{selected.stack}</span><button type="button" onClick={() => setSelected(null)}>返回项目列表 ↑</button></div>
+            <div className="modal-footer">
+              <span>{selected.stack}</span>
+              <div className="modal-actions">
+                {selected.externalUrl && <a href={selected.externalUrl} target="_blank" rel="noreferrer">进入声音体验 ↗</a>}
+                <button type="button" onClick={() => setSelected(null)}>返回项目列表 ↑</button>
+              </div>
+            </div>
           </article>
         </div>
       )}
