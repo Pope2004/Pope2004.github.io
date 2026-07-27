@@ -13,7 +13,7 @@ type Project = {
   stack: string;
   cover: string;
   facts: string[];
-  gallery: { src: string; alt: string }[];
+  gallery: { src: string; alt: string; title?: string; note?: string; layout?: "wide" | "half" | "portrait" }[];
   productBrief?: {
     intro: string;
     steps: { number: string; title: string; text: string }[];
@@ -32,17 +32,23 @@ const projects: Project[] = [
     number: "01",
     category: "游戏设计 / 独立开发",
     title: "余烬牌塔",
-    status: "◈ 可玩版本持续迭代",
-    summary: "在逐渐熄灭的高塔中，用每一次选择构筑自己的战斗方式。",
-    description: "《余烬牌塔》是一款单人卡牌构筑 Roguelike。玩家沿随机路线攀登废塔，在战斗中读取敌人意图、安排有限能量与出牌顺序，并在胜利后选择新卡、遗物和下一条路线。每一局都会形成不同的牌组与风险决策，最终挑战守在塔顶的 Boss。",
+    status: "◈ 完整 MVP · 持续扩展",
+    summary: "带着最后一粒火登上废塔，在卡牌、路线与代价之间决定世界的结局。",
+    description: "《余烬牌塔》是一款由我独立设计与开发的单人卡牌构筑 Roguelike。玩家扮演最后的“余烬行者”，携带星炉炉心穿过三章高塔，在可预判的回合战斗、随机路线和资源取舍中形成自己的牌组，最终面对被囚禁在塔顶的吞星者，并决定火种应当属于高塔，还是重新回到荒原。",
     stack: "Godot / Game Design / Art Direction / Content Pipeline",
-    cover: "/portfolio/ember-boss-battle.png",
-    facts: ["61 张独立卡牌", "20 个遗物", "10 层路线 + Boss", "7 名敌人五姿态"],
+    cover: "/portfolio/ember-update/current-battle.jpg",
+    facts: ["61 张独立卡牌", "20 个独立遗物", "10 层路线 + Boss", "10 名敌人与 Boss", "3 章主线故事"],
     gameOverview: true,
     gallery: [
-      { src: "/portfolio/ember-boss-battle.png", alt: "余烬牌塔 Boss 对战" },
-      { src: "/portfolio/ember-cards.png", alt: "余烬牌塔卡牌总览" },
-      { src: "/portfolio/ember-art-direction.png", alt: "余烬牌塔美术方向板" },
+      { src: "/portfolio/ember-update/current-battle.jpg", alt: "余烬行者在余烬门厅迎战荒路盗", title: "余烬门厅", note: "新版主角、完整战斗场景、敌人意图与扇形手牌同屏运行", layout: "wide" },
+      { src: "/portfolio/ember-update/story-prologue.jpg", alt: "余烬牌塔序章最后一粒火", title: "最后一粒火", note: "序章、三段楼层章节、Boss 门前对白与双结局组成完整主线", layout: "half" },
+      { src: "/portfolio/ember-update/route-map-v2.jpg", alt: "余烬牌塔纵向滚动路线地图", title: "纵向路线地图", note: "三条随机路线连接战斗、精英、商店、工匠、事件与 Boss", layout: "half" },
+      { src: "/portfolio/ember-update/cistern-expansion.jpg", alt: "地下蓄水渠场景与三名敌人资产", title: "地下蓄水渠", note: "六层动态环境与淤泥潜伏者、提灯溺魂、沉钟执刑者", layout: "wide" },
+      { src: "/portfolio/ember-update/noncombat-rooms.jpg", alt: "奖励房、商店和工匠房的背景与运行界面", title: "非战斗房间", note: "奖励、交易与牌组精修拥有独立场景、NPC 与交互反馈", layout: "wide" },
+      { src: "/portfolio/ember-update/star-furnace-event.jpg", alt: "熄灭的星炉事件选择界面", title: "熄灭的星炉", note: "以生命、金币、治疗和遗物构成风险与收益的事件选择", layout: "wide" },
+      { src: "/portfolio/ember-update/player-motion.jpg", alt: "余烬行者九种动作姿态实机检查板", title: "余烬行者动作系统", note: "20 个运行姿态覆盖呼吸、移动、攻击、施法、受击、胜利与倒地", layout: "wide" },
+      { src: "/portfolio/ember-update/card-catalog.jpg", alt: "余烬牌塔 61 张卡牌独立插画目录", title: "61 张牌，一牌一图", note: "攻击、防御、技能与能力牌全部拥有独立插画和稀有度视觉", layout: "portrait" },
+      { src: "/portfolio/ember-update/relic-catalog.jpg", alt: "余烬牌塔 20 个遗物图标", title: "20 个改变规则的遗物", note: "每件遗物拥有独立图标，并与能量、抽牌、战斗节奏形成协同", layout: "portrait" },
     ],
   },
   {
@@ -332,6 +338,36 @@ export function Make(idea) {
                   <article><small>FINAL ASCENT</small><h4>走向塔顶 Boss</h4><p>普通敌人逐步检验牌组稳定性，最终 Boss 则要求玩家把整局获得的卡牌、遗物与路线收益转化为完整战斗方案。</p></article>
                 </div>
                 <div className="game-loop-line"><span>选择路线</span><i>→</i><span>回合战斗</span><i>→</i><span>获得奖励</span><i>→</i><span>调整牌组</span><i>→</i><b>继续登塔</b></div>
+                <div className="game-build">
+                  <div className="game-build-heading">
+                    <div><small>CURRENT BUILD · 2026.07</small><h4>从规则原型，推进到完整冒险。</h4></div>
+                    <p>新版把战斗之外的世界、叙事和制作管线补齐，让每一次登塔既有策略差异，也有明确的空间与故事进程。</p>
+                  </div>
+                  <div className="game-build-stats">
+                    <span><strong>61</strong><small>独立卡牌插画</small></span>
+                    <span><strong>20</strong><small>遗物与规则协同</small></span>
+                    <span><strong>10</strong><small>敌人 / Boss</small></span>
+                    <span><strong>20</strong><small>主角运行姿态</small></span>
+                  </div>
+                </div>
+                <div className="game-story">
+                  <div className="story-copy">
+                    <small>STORY OF THE LAST EMBER</small>
+                    <h4>高塔不只是地图，<br />也是一段被掩埋的历史。</h4>
+                    <p>星火塔曾把晨光送往荒原，却以囚禁“吞星者”为代价维持燃烧。玩家携带最后一粒火登塔，在 NPC、事件与章节记录中逐步发现真相；最终的目标不再只是击败 Boss，而是决定是否重启旧有秩序。</p>
+                    <blockquote>“火不会替人选择道路。它只照亮代价。”</blockquote>
+                  </div>
+                  <ol className="story-acts">
+                    <li><span>ACT I</span><div><b>灰烬之路</b><p>穿过余烬门厅与断链回廊，学习在资源不足时继续前进。</p></div></li>
+                    <li><span>ACT II</span><div><b>沉钟之下</b><p>进入地下蓄水渠，面对新的敌人、环境和星火塔的旧债。</p></div></li>
+                    <li><span>ACT III</span><div><b>无星长阶</b><p>抵达吞星之池，把整局构筑转化为最终战斗与结局选择。</p></div></li>
+                  </ol>
+                </div>
+                <div className="game-production">
+                  <article><span>01</span><div><small>COMBAT STAGE</small><h4>动态战斗舞台</h4><p>主角和敌人以脚底为锚进行呼吸、蓄力、突进、受击与回位；火光、冷光、接触影、场景视差和镜头冲击共同建立角色重量。</p></div></article>
+                  <article><span>02</span><div><small>WORLD SYSTEM</small><h4>战斗之外的选择</h4><p>奖励房、商店、工匠和事件房都有独立环境与 NPC。玩家可以购买遗物、强化或删除卡牌，也能用生命换取更激进的成长。</p></div></article>
+                  <article><span>03</span><div><small>CONTENT PIPELINE</small><h4>可持续扩展的资产管线</h4><p>卡牌、遗物、角色姿态、受光遮罩、背景分层与 VFX 均以固定规格接入，并配套自动验证与实机检查板，便于继续增加内容。</p></div></article>
+                </div>
               </section>
             )}
             {selected.productBrief && (
@@ -391,8 +427,13 @@ export function Make(idea) {
                 </div>
               </section>
             )}
-            <div className="modal-gallery">
-              {selected.gallery.map((image) => <img src={image.src} alt={image.alt} key={image.src} />)}
+            <div className={`modal-gallery${selected.gameOverview ? " game-gallery" : ""}`}>
+              {selected.gallery.map((image) => (
+                <figure className={image.layout ? `gallery-${image.layout}` : ""} key={image.src}>
+                  <img src={image.src} alt={image.alt} />
+                  {(image.title || image.note) && <figcaption><b>{image.title}</b><span>{image.note}</span></figcaption>}
+                </figure>
+              ))}
             </div>
             {selected.characterAssets && (
               <section className="character-assets" aria-labelledby="character-assets-title">
