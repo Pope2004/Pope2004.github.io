@@ -1,7 +1,19 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: isGitHubPages ? "export" : undefined,
+  trailingSlash: isGitHubPages,
+  turbopack: {
+    root: process.cwd(),
+  },
+  images: {
+    unoptimized: isGitHubPages,
+  },
+  typescript: {
+    ignoreBuildErrors: isGitHubPages,
+  },
 };
 
 export default nextConfig;

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = process.env.GITHUB_PAGES === "true"
+  ? "https://pope2004.github.io"
+  : "https://zhangpu-universe-portfolio.lush-bard-9036.chatgpt.site";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zhangpu-universe-portfolio.lush-bard-9036.chatgpt.site"),
+  metadataBase: new URL(siteUrl),
   title: "Zhang Pu Universe · 张朴作品集",
   description: "张朴的产品、游戏与 AI 影像作品集。",
   openGraph: {
