@@ -11,7 +11,7 @@ type Project = {
   summary: string;
   description: string;
   stack: string;
-  cover: string;
+  cover?: string;
   facts: string[];
   gallery: { src: string; alt: string; title?: string; note?: string; layout?: "wide" | "half" | "portrait" }[];
   productBrief?: {
@@ -25,6 +25,7 @@ type Project = {
   video?: string;
   externalUrl?: string;
   externalLabel?: string;
+  playUrl?: string;
 };
 
 const projects: Project[] = [
@@ -144,18 +145,9 @@ const projects: Project[] = [
     summary: "用自然语言搭建一个可以探索、建造与破坏的随机方块世界。",
     description: "《像素方块世界》是在 Coze 编程中完成的 3D 网页游戏。我从玩法目标出发，通过对话把 Three.js 场景、第一人称角色、随机地形、方块交互、物理碰撞与响应式控制逐步组合成可运行版本，并在出生点对面的沙质平地上用方块拼出“COZE”，把生成工具本身写进世界。",
     stack: "Coze Coding / Three.js / Voxel World / Interaction Design",
-    cover: "/portfolio/voxel-block-world-coze.png",
     facts: ["随机方块世界", "第一人称探索", "放置与破坏方块", "重力与碰撞", "桌面 / 移动端控制"],
-    gallery: [
-      {
-        src: "/portfolio/voxel-block-world-coze.png",
-        alt: "Coze 编程中运行的像素方块世界游戏首页",
-        title: "从一句需求到可玩的 3D 世界",
-        note: "真实 Coze 开发与运行界面：Three.js 场景、像素地形与游戏入口已在同一版本中跑通",
-      },
-    ],
-    externalUrl: "https://www.coze.cn/session/7627773872498229558",
-    externalLabel: "查看 Coze 项目",
+    gallery: [],
+    playUrl: "https://8rwk9p9g6r.coze.site",
   },
 ];
 
@@ -194,6 +186,7 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.overflow = selected ? "hidden" : "";
+    if (selected?.playUrl) audioRef.current?.pause();
     const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setSelected(null);
     window.addEventListener("keydown", onKeyDown);
     return () => {
@@ -259,7 +252,16 @@ export function Make(idea) {
           <div className="project-grid">
             {projects.map((project) => (
               <button className={`project-card card-${project.id}`} type="button" key={project.id} onClick={() => setSelected(project)} data-reveal>
-                <div className="project-image"><img src={project.cover} alt="" /></div>
+                <div className="project-image">
+                  {project.cover ? (
+                    <img src={project.cover} alt="" />
+                  ) : (
+                    <div className="voxel-card-art" aria-hidden="true">
+                      <b>VOXEL<br />BLOCK WORLD</b>
+                      <small>PLAYABLE BUILD · 2026</small>
+                    </div>
+                  )}
+                </div>
                 <div className="project-top"><span>项目 {project.number}</span><span>{project.category}</span></div>
                 <div className="project-main">
                   <h3>{project.title}</h3>
@@ -340,6 +342,32 @@ export function Make(idea) {
               <p>{selected.description}</p>
             </div>
             <div className="modal-facts">{selected.facts.map((fact) => <span key={fact}>{fact}</span>)}</div>
+            {selected.playUrl && (
+              <section className="voxel-play" aria-labelledby="voxel-play-title">
+                <div className="voxel-play-heading">
+                  <div>
+                    <small>PLAYABLE BUILD · COZE HOSTING</small>
+                    <h3 id="voxel-play-title">直接进入方块世界。</h3>
+                  </div>
+                  <a href={selected.playUrl} target="_blank" rel="noreferrer">全屏试玩 ↗</a>
+                </div>
+                <div className="voxel-frame">
+                  <iframe
+                    src={selected.playUrl}
+                    title="像素方块世界在线试玩"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-pointer-lock"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="voxel-controls">
+                  <span><b>移动</b>W A S D</span>
+                  <span><b>视角</b>鼠标移动</span>
+                  <span><b>跳跃</b>空格</span>
+                  <span><b>交互</b>左键放置 · 右键破坏</span>
+                </div>
+              </section>
+            )}
             {selected.gameOverview && (
               <section className="game-overview" aria-labelledby="game-overview-title">
                 <div className="game-intro">
@@ -451,7 +479,7 @@ export function Make(idea) {
                 </div>
               </section>
             )}
-            <div className={`modal-gallery${selected.gameOverview ? " game-gallery" : ""}${selected.id === "voxel-world" ? " voxel-gallery" : ""}`}>
+            <div className={`modal-gallery${selected.gameOverview ? " game-gallery" : ""}`}>
               {selected.gallery.map((image) => (
                 <figure className={image.layout ? `gallery-${image.layout}` : ""} key={image.src}>
                   <img src={image.src} alt={image.alt} />
