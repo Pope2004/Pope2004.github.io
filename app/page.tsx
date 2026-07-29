@@ -256,10 +256,7 @@ export function Make(idea) {
                   {project.cover ? (
                     <img src={project.cover} alt="" />
                   ) : (
-                    <div className="voxel-card-art" aria-hidden="true">
-                      <b>VOXEL<br />BLOCK WORLD</b>
-                      <small>PLAYABLE BUILD · 2026</small>
-                    </div>
+                    <div className="voxel-card-art" aria-hidden="true" />
                   )}
                 </div>
                 <div className="project-top"><span>项目 {project.number}</span><span>{project.category}</span></div>

@@ -59,17 +59,10 @@ img { display:block; max-width:100%; }
 .project-main { margin:auto 0; }.project-main h3 { margin:0 0 8px; font-size:clamp(32px,3vw,50px); letter-spacing:-.055em; }.project-main p { margin:6px 0; color:var(--muted); line-height:1.6; }.project-main .status { color:var(--ink); font-size:12px; }
 .project-card:hover .project-main p { color:rgba(255,255,255,.8); }.project-card:hover .project-main .status { color:white; }
 .project-bottom { display:flex; justify-content:space-between; align-items:end; gap:20px; color:var(--muted); font-size:13px; }.project-bottom i { font-size:26px; font-style:normal; transition:transform .3s; }.project-card:hover .project-bottom i { transform:translate(5px,-5px); }
-.card-voxel-world .project-image { opacity:1; transform:none; background:#091b16; }
 .card-voxel-world .project-image::after { background:linear-gradient(180deg,rgba(5,16,13,.08),rgba(5,16,13,.82)); }
-.card-voxel-world > *:not(.project-image) { color:white; }
-.card-voxel-world .project-main p { color:rgba(255,255,255,.68); }
-.card-voxel-world .project-main .status { color:#b9e5a8; }
-.card-voxel-world .project-bottom { color:rgba(255,255,255,.62); }
 .voxel-card-art { position:absolute; inset:0; overflow:hidden; background:linear-gradient(#6db6d6 0 47%,#2f6f25 47% 100%); }
 .voxel-card-art::before { content:""; position:absolute; left:-4%; right:-4%; top:34%; height:43%; background:linear-gradient(135deg,transparent 0 13%,#174d1d 13% 27%,#286526 27% 42%,transparent 42% 54%,#143f19 54% 76%,transparent 76%); image-rendering:pixelated; }
 .voxel-card-art::after { content:""; position:absolute; left:0; right:0; bottom:0; height:30%; background:repeating-linear-gradient(90deg,#315f21 0 48px,#3a7027 48px 96px); box-shadow:inset 0 18px 28px rgba(0,0,0,.18); }
-.voxel-card-art b { position:absolute; z-index:1; left:28px; top:78px; color:white; font:800 clamp(34px,4vw,58px)/.88 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:-.08em; text-shadow:0 4px 18px rgba(0,0,0,.35); }
-.voxel-card-art small { position:absolute; z-index:1; left:30px; top:190px; color:#d8f1c9; font:700 9px ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; }
 
 .method { padding:110px 4vw; border-top:1px solid var(--line); }
 .method-title { display:grid; grid-template-columns:1.2fr .65fr; gap:8vw; align-items:end; }.method-title p { margin:0 0 10px; color:var(--muted); line-height:1.85; }
