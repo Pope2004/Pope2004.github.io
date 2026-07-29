@@ -117,7 +117,7 @@ const projects: Project[] = [
     environmentAssets: [
       { src: "/portfolio/ai-drama-assets/ritual-arena.jpg", alt: "AI 漫剧祭坛场景多镜头氛围板", title: "祭坛场景", note: "核心场景 · 多镜头氛围与构图探索" },
     ],
-    video: "/portfolio/ai-drama-preview.mp4",
+    video: "/portfolio/ai-drama-full.mp4",
   },
   {
     id: "sound-study",
