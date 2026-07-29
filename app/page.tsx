@@ -38,11 +38,11 @@ const projects: Project[] = [
     summary: "带着最后一粒火登上废塔，在卡牌、路线与代价之间决定世界的结局。",
     description: "《余烬牌塔》是一款由我独立设计与开发的单人卡牌构筑 Roguelike。玩家扮演最后的“余烬行者”，携带星炉炉心穿过三章高塔，在可预判的回合战斗、随机路线和资源取舍中形成自己的牌组，最终面对被囚禁在塔顶的吞星者，并决定火种应当属于高塔，还是重新回到荒原。",
     stack: "Godot / Game Design / Art Direction / Content Pipeline",
-    cover: "/portfolio/ember-update/current-battle.jpg",
+    cover: "/portfolio/ember-update/current-battle-facing-fixed.jpg",
     facts: ["61 张独立卡牌", "20 个独立遗物", "10 层路线 + Boss", "10 名敌人与 Boss", "3 章主线故事"],
     gameOverview: true,
     gallery: [
-      { src: "/portfolio/ember-update/current-battle.jpg", alt: "余烬行者在余烬门厅迎战荒路盗", title: "余烬门厅", note: "新版主角、完整战斗场景、敌人意图与扇形手牌同屏运行", layout: "wide" },
+      { src: "/portfolio/ember-update/current-battle-facing-fixed.jpg", alt: "余烬行者与面向主角的荒路盗在余烬门厅对峙", title: "余烬门厅", note: "新版主角、正确对视的荒路盗、完整战斗场景、敌人意图与扇形手牌同屏运行", layout: "wide" },
       { src: "/portfolio/ember-update/story-prologue.jpg", alt: "余烬牌塔序章最后一粒火", title: "最后一粒火", note: "序章、三段楼层章节、Boss 门前对白与双结局组成完整主线", layout: "half" },
       { src: "/portfolio/ember-update/route-map-v2.jpg", alt: "余烬牌塔纵向滚动路线地图", title: "纵向路线地图", note: "三条随机路线连接战斗、精英、商店、工匠、事件与 Boss", layout: "half" },
       { src: "/portfolio/ember-update/cistern-expansion.jpg", alt: "地下蓄水渠场景与三名敌人资产", title: "地下蓄水渠", note: "六层动态环境与淤泥潜伏者、提灯溺魂、沉钟执刑者", layout: "wide" },
