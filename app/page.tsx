@@ -24,6 +24,7 @@ type Project = {
   environmentAssets?: { src: string; alt: string; title: string; note: string }[];
   video?: string;
   externalUrl?: string;
+  externalLabel?: string;
 };
 
 const projects: Project[] = [
@@ -132,6 +133,29 @@ const projects: Project[] = [
     facts: ["原创钢琴曲 02:18", "实时频谱分析", "四幕声音旅程", "Canvas 粒子系统"],
     gallery: [{ src: "/portfolio/sound-study-cover.png", alt: "SOUND STUDY 001 声音可视化体验" }],
     externalUrl: "https://zhangpu-sound-study.lush-bard-9036.chatgpt.site",
+    externalLabel: "进入声音体验",
+  },
+  {
+    id: "voxel-world",
+    number: "06",
+    category: "AI 编程 / 3D 游戏",
+    title: "像素方块世界",
+    status: "◈ Coze 可运行版本",
+    summary: "用自然语言搭建一个可以探索、建造与破坏的随机方块世界。",
+    description: "《像素方块世界》是在 Coze 编程中完成的 3D 网页游戏。我从玩法目标出发，通过对话把 Three.js 场景、第一人称角色、随机地形、方块交互、物理碰撞与响应式控制逐步组合成可运行版本，并在出生点对面的沙质平地上用方块拼出“COZE”，把生成工具本身写进世界。",
+    stack: "Coze Coding / Three.js / Voxel World / Interaction Design",
+    cover: "/portfolio/voxel-block-world-coze.png",
+    facts: ["随机方块世界", "第一人称探索", "放置与破坏方块", "重力与碰撞", "桌面 / 移动端控制"],
+    gallery: [
+      {
+        src: "/portfolio/voxel-block-world-coze.png",
+        alt: "Coze 编程中运行的像素方块世界游戏首页",
+        title: "从一句需求到可玩的 3D 世界",
+        note: "真实 Coze 开发与运行界面：Three.js 场景、像素地形与游戏入口已在同一版本中跑通",
+      },
+    ],
+    externalUrl: "https://www.coze.cn/session/7627773872498229558",
+    externalLabel: "查看 Coze 项目",
   },
 ];
 
@@ -224,7 +248,7 @@ export function Make(idea) {
         <section className="manifesto" data-reveal>
           <p className="section-index">01 / SELECTED WORK</p>
           <h2>让复杂问题成为<br /><em>清楚、可用的体验。</em></h2>
-          <p>五个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示的完整版本。</p>
+          <p>六个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示的完整版本。</p>
         </section>
 
         <section className="project-section" id="work">
@@ -272,7 +296,7 @@ export function Make(idea) {
             <p>产品构建者、独立游戏开发者，也在探索生成式影像。</p>
             <p>我喜欢把复杂信息整理成容易理解的结构，再亲手把方案推进成可以体验的真实作品。</p>
           </div>
-          <div className="about-stats"><span><b>05</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
+          <div className="about-stats"><span><b>06</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
         </section>
       </div>
 
@@ -427,7 +451,7 @@ export function Make(idea) {
                 </div>
               </section>
             )}
-            <div className={`modal-gallery${selected.gameOverview ? " game-gallery" : ""}`}>
+            <div className={`modal-gallery${selected.gameOverview ? " game-gallery" : ""}${selected.id === "voxel-world" ? " voxel-gallery" : ""}`}>
               {selected.gallery.map((image) => (
                 <figure className={image.layout ? `gallery-${image.layout}` : ""} key={image.src}>
                   <img src={image.src} alt={image.alt} />
@@ -471,7 +495,7 @@ export function Make(idea) {
             <div className="modal-footer">
               <span>{selected.stack}</span>
               <div className="modal-actions">
-                {selected.externalUrl && <a href={selected.externalUrl} target="_blank" rel="noreferrer">进入声音体验 ↗</a>}
+                {selected.externalUrl && <a href={selected.externalUrl} target="_blank" rel="noreferrer">{selected.externalLabel ?? "查看项目"} ↗</a>}
                 <button type="button" onClick={() => setSelected(null)}>返回项目列表 ↑</button>
               </div>
             </div>
