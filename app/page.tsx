@@ -149,9 +149,30 @@ const projects: Project[] = [
     gallery: [],
     playUrl: "https://8rwk9p9g6r.coze.site",
   },
+  {
+    id: "wechat-operations",
+    number: "07",
+    category: "内容运营 / 公众号",
+    title: "鲸鱼的思考",
+    status: "◈ 原创内容持续运营",
+    summary: "把个人公众号做成可以持续验证的内容运营实验场。",
+    description: "围绕 AI、产品、商业与个人成长策划原创内容，独立完成选题、标题、封面、编辑发布与数据复盘。通过阅读、点赞、转发和收藏判断内容价值，并把表现差异继续反馈到下一轮选题与表达中，形成从内容生产到运营验证的完整闭环。",
+    stack: "Content Strategy / Editorial / Visual Design / Data Review",
+    cover: "/portfolio/wechat-operations-dashboard.png",
+    facts: ["单篇最高 1,244 阅读", "单篇 127 次转发", "单篇 23 次点赞", "原创图文持续发布", "选题—发布—复盘闭环"],
+    gallery: [
+      {
+        src: "/portfolio/wechat-operations-dashboard.png",
+        alt: "微信公众号鲸鱼的思考原创内容发布与阅读转发数据后台",
+        title: "真实发布与传播数据",
+        note: "围绕 AI、产品与个人成长持续测试选题；用阅读、点赞、转发和收藏表现复盘内容价值。",
+        layout: "wide",
+      },
+    ],
+  },
 ];
 
-const tools = ["Product Strategy", "UX / UI", "React", "Godot", "AI Workflow", "Art Direction", "Video Editing", "GitHub"];
+const tools = ["Product Strategy", "Content Operations", "UX / UI", "React", "Godot", "AI Workflow", "Art Direction", "Video Editing", "GitHub"];
 
 export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -213,9 +234,9 @@ export default function Home() {
       <div id="content">
         <section className="hero" id="top">
           <div className="hero-copy" data-reveal>
-            <p className="overline"><span /> 产品 / 游戏 / AI 影像</p>
+            <p className="overline"><span /> 产品 / 游戏 / AI / 内容运营</p>
             <h1><b>把想法</b><br />做成作品。</h1>
-            <p className="hero-intro">从问题定义、交互与视觉，到真正可以运行的网站、游戏和影像。</p>
+            <p className="hero-intro">从问题定义、内容策略、交互与视觉，到真正可以运行和持续验证的作品。</p>
             <a className="text-link" href="#work">查看精选作品 <span>↘</span></a>
           </div>
 
@@ -224,7 +245,8 @@ export default function Home() {
             <pre><code>{`const focus = [
   "product",
   "game",
-  "ai cinema"
+  "ai cinema",
+  "content"
 ];
 
 export function Make(idea) {
@@ -241,7 +263,7 @@ export function Make(idea) {
         <section className="manifesto" data-reveal>
           <p className="section-index">01 / SELECTED WORK</p>
           <h2>让复杂问题成为<br /><em>清楚、可用的体验。</em></h2>
-          <p>六个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示的完整版本。</p>
+          <p>七个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示、可以验证的完整版本。</p>
         </section>
 
         <section className="project-section" id="work">
@@ -292,20 +314,20 @@ export function Make(idea) {
         <section className="about" id="about" data-reveal>
           <div><p className="section-index">03 / ABOUT</p><h2>张朴。</h2></div>
           <div>
-            <p>产品构建者、独立游戏开发者，也在探索生成式影像。</p>
+            <p>产品构建者、独立游戏开发者，也在探索生成式影像与内容运营。</p>
             <p>我喜欢把复杂信息整理成容易理解的结构，再亲手把方案推进成可以体验的真实作品。</p>
           </div>
-          <div className="about-stats"><span><b>06</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
+          <div className="about-stats"><span><b>07</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
         </section>
       </div>
 
       <footer id="contact">
         <div className="footer-main">
-          <div><h2>Zhang Pu Universe<i>.</i></h2><p>设计产品、制作游戏，<br />也用 AI 影像讲故事。</p></div>
+          <div><h2>Zhang Pu Universe<i>.</i></h2><p>设计产品、制作游戏，<br />也用内容与 AI 讲故事。</p></div>
           <div className="footer-links"><a href="#work">作品 ↗</a><a href="#method">方法 ↗</a><a href="#about">关于 ↗</a></div>
           <div className="footer-links"><a href="#top">回到顶部 ↑</a><span>Shanghai · China</span><span>欢迎通过当前分享渠道联系</span></div>
         </div>
-        <div className="footer-bottom"><span>© 2026 张朴 · 保持好奇，持续构建。</span><span className="exploring">✦ 正在探索 产品 × 游戏 × AI</span></div>
+        <div className="footer-bottom"><span>© 2026 张朴 · 保持好奇，持续构建。</span><span className="exploring">✦ 正在探索 产品 × 游戏 × AI × 内容</span></div>
       </footer>
 
       <audio
