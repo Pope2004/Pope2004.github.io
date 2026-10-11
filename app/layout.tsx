@@ -8,16 +8,16 @@ const siteUrl = process.env.GITHUB_PAGES === "true"
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Zhang Pu Universe · 张朴作品集",
-  description: "张朴的产品、游戏与 AI 影像作品集。",
+  description: "张朴的产品、游戏、AI 与内容运营作品集。",
   openGraph: {
     title: "Zhang Pu Universe · 张朴作品集",
-    description: "产品、游戏与 AI 影像，从想法到可运行作品。",
+    description: "产品、游戏、AI 与内容运营，从想法到可运行作品。",
     images: [{ url: "/og.png", width: 1736, height: 907, alt: "Zhang Pu Universe" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Zhang Pu Universe · 张朴作品集",
-    description: "产品、游戏与 AI 影像，从想法到可运行作品。",
+    description: "产品、游戏、AI 与内容运营，从想法到可运行作品。",
     images: ["/og.png"],
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 
 type Project = {
   id: string;
@@ -25,7 +25,6 @@ type Project = {
   video?: string;
   externalUrl?: string;
   externalLabel?: string;
-  playUrl?: string;
 };
 
 const projects: Project[] = [
@@ -54,8 +53,44 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "cs2",
+    id: "xinlingbao",
     number: "02",
+    category: "AI 产品 / 商业化实践",
+    title: "星灵宝",
+    status: "◈ 已上线 · 支付接入中",
+    summary: "把人格测试、星座范式与个性化报告做成一套真实上线的产品闭环。",
+    description: "星灵宝是一款面向自我探索场景的 AI 产品。我从产品命名、信息架构和 24 道测试题出发，建立 192 种星座人格范式，并继续推进账号、权益、报告解锁、问星交互、价格说明、隐私条款与独立域名上线。当前产品主体已运行，正式支付仍按真实状态标记为接入中。",
+    stack: "AI Product / Prompt System / Full-stack Delivery / Growth Content",
+    cover: "/portfolio/xinlingbao-home.jpg",
+    facts: ["24 道人格测试", "192 种星灵范式", "6 章个性化报告", "账号与权益体系", "独立域名上线"],
+    gallery: [
+      { src: "/portfolio/xinlingbao-home.jpg", alt: "星灵宝产品首页", title: "从品牌到产品入口", note: "首页集中呈现人格测试、问星、定价、条款和个人中心入口。", layout: "wide" },
+      { src: "/portfolio/xinlingbao-test.jpg", alt: "星灵宝 24 道人格测试流程", title: "24 道认知偏好测试", note: "使用清晰进度、五级量表与移动端交互，逐步生成用户的认知偏好结果。", layout: "wide" },
+    ],
+    externalUrl: "https://xinlingbao.cc",
+    externalLabel: "访问星灵宝",
+  },
+  {
+    id: "muyu-store",
+    number: "03",
+    category: "微信小程序 / 商业系统",
+    title: "沐予女装商城",
+    status: "◈ 完整业务演示版",
+    summary: "从消费者下单到商家发货，把小程序商城做成可运行的业务闭环。",
+    description: "这不是一组商城效果图，而是一套可以导入微信开发者工具运行的女装商城演示系统。项目覆盖消费者端、服务端、数据库与商家后台；商品规格、库存、优惠券、订单、物流和售后之间保持真实状态联动，微信登录、支付等依赖资质的能力通过明确标注的模拟适配器演示。",
+    stack: "WeChat Mini Program / Node.js / SQLite / Admin Console",
+    cover: "/portfolio/muyu-miniapp-home.png",
+    facts: ["12+ 演示商品", "SKU 与库存校验", "订单状态闭环", "退款 / 退货流程", "商家管理后台"],
+    gallery: [
+      { src: "/portfolio/muyu-miniapp-home.png", alt: "沐予女装商城小程序首页", title: "消费者端首页", note: "品牌展示、新品、热销、分类和活动入口均可真实跳转。", layout: "portrait" },
+      { src: "/portfolio/muyu-miniapp-product.png", alt: "沐予女装商城商品详情", title: "商品与 SKU", note: "颜色、尺码、库存、收藏、购物车和立即购买形成真实交互。", layout: "portrait" },
+      { src: "/portfolio/muyu-admin-dashboard.png", alt: "沐予女装商城商家经营后台", title: "商家经营概览", note: "销售统计、库存预警和业务状态由演示数据实时计算。", layout: "portrait" },
+      { src: "/portfolio/muyu-admin-orders.png", alt: "沐予女装商城订单管理后台", title: "订单与发货", note: "后台发货会同步驱动消费者端订单和物流状态变化。", layout: "portrait" },
+    ],
+  },
+  {
+    id: "cs2",
+    number: "04",
     category: "产品设计 / 数据内容",
     title: "CS2 Pro Settings",
     status: "◈ 可运行网站",
@@ -72,7 +107,7 @@ const projects: Project[] = [
   },
   {
     id: "relay",
-    number: "03",
+    number: "05",
     category: "电商情报 / AI 产品",
     title: "Relay Growth",
     status: "◈ 卖家验证阶段",
@@ -98,32 +133,8 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "ai-drama",
-    number: "04",
-    category: "AI 影像 / 叙事剪辑",
-    title: "AI 漫剧",
-    status: "◈ 已完成短片",
-    summary: "把生成式画面组织成连续的古风玄幻故事。",
-    description: "围绕角色设定、场景氛围、镜头运动与音画节奏，将分散的 AI 画面组织成具有情绪和连续性的短片。制作覆盖视觉方向、镜头生成、素材筛选与剪映后期。",
-    stack: "AI Cinema / Storytelling / Visual Direction / Editing",
-    cover: "/portfolio/ai-drama-poster.png",
-    facts: ["古风玄幻叙事", "角色定妆与状态设计", "场景氛围资产", "剪映后期成片"],
-    gallery: [{ src: "/portfolio/ai-drama-poster.png", alt: "AI 漫剧古风玄幻场景" }],
-    characterAssets: [
-      { src: "/portfolio/ai-drama-assets/priest.jpg", name: "祭司", state: "角色设定 · 正侧背多视角" },
-      { src: "/portfolio/ai-drama-assets/cen-huashang.jpg", name: "岑华裳", state: "角色设定 · 宫廷礼服" },
-      { src: "/portfolio/ai-drama-assets/cen-yingxue.jpg", name: "岑映雪", state: "角色设定 · 白衣常态" },
-      { src: "/portfolio/ai-drama-assets/xie-zhaotang.jpg", name: "谢照棠", state: "角色设定 · 常态" },
-      { src: "/portfolio/ai-drama-assets/xie-zhaotang-corrupted.jpg", name: "谢照棠", state: "状态设计 · 异化形态" },
-    ],
-    environmentAssets: [
-      { src: "/portfolio/ai-drama-assets/ritual-arena.jpg", alt: "AI 漫剧祭坛场景多镜头氛围板", title: "祭坛场景", note: "核心场景 · 多镜头氛围与构图探索" },
-    ],
-    video: "/portfolio/ai-drama-full.mp4",
-  },
-  {
     id: "sound-study",
-    number: "05",
+    number: "06",
     category: "声音设计 / 生成式交互",
     title: "SOUND STUDY 001",
     status: "◈ 实时声音可视化",
@@ -135,19 +146,6 @@ const projects: Project[] = [
     gallery: [{ src: "/portfolio/sound-study-cover.png", alt: "SOUND STUDY 001 声音可视化体验" }],
     externalUrl: "https://zhangpu-sound-study.lush-bard-9036.chatgpt.site",
     externalLabel: "进入声音体验",
-  },
-  {
-    id: "voxel-world",
-    number: "06",
-    category: "AI 编程 / 3D 游戏",
-    title: "像素方块世界",
-    status: "◈ Coze 可运行版本",
-    summary: "用自然语言搭建一个可以探索、建造与破坏的随机方块世界。",
-    description: "《像素方块世界》是在 Coze 编程中完成的 3D 网页游戏。我从玩法目标出发，通过对话把 Three.js 场景、第一人称角色、随机地形、方块交互、物理碰撞与响应式控制逐步组合成可运行版本，并在出生点对面的沙质平地上用方块拼出“COZE”，把生成工具本身写进世界。",
-    stack: "Coze Coding / Three.js / Voxel World / Interaction Design",
-    facts: ["随机方块世界", "第一人称探索", "放置与破坏方块", "重力与碰撞", "桌面 / 移动端控制"],
-    gallery: [],
-    playUrl: "https://8rwk9p9g6r.coze.site",
   },
   {
     id: "wechat-operations",
@@ -172,12 +170,18 @@ const projects: Project[] = [
   },
 ];
 
-const tools = ["Product Strategy", "Content Operations", "UX / UI", "React", "Godot", "AI Workflow", "Art Direction", "Video Editing", "GitHub"];
+const tools = ["Product Strategy", "Content Operations", "UX / UI", "React", "Godot", "AI Workflow", "WeChat Mini Program", "Full-stack Delivery", "GitHub"];
 
 export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const updateCardLight = (event: PointerEvent<HTMLButtonElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+    event.currentTarget.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+  };
 
   const toggleMusic = async () => {
     const audio = audioRef.current;
@@ -207,7 +211,6 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.overflow = selected ? "hidden" : "";
-    if (selected?.playUrl) audioRef.current?.pause();
     const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setSelected(null);
     window.addEventListener("keydown", onKeyDown);
     return () => {
@@ -241,11 +244,12 @@ export default function Home() {
           </div>
 
           <div className="code-window" data-reveal>
+            <div className="build-orbit" aria-hidden="true"><i /><i /><i /><span /></div>
             <div className="window-bar"><i /><i /><i /><span>zhangpu-build.tsx</span></div>
             <pre><code>{`const focus = [
   "product",
   "game",
-  "ai cinema",
+  "ai product",
   "content"
 ];
 
@@ -256,14 +260,14 @@ export function Make(idea) {
     .test()
     .ship();
 }`}</code></pre>
-            <span className="code-status">● BUILDING IN SHANGHAI</span>
+            <span className="code-status">● BUILDING IN CHENGDU</span>
           </div>
         </section>
 
         <section className="manifesto" data-reveal>
           <p className="section-index">01 / SELECTED WORK</p>
           <h2>让复杂问题成为<br /><em>清楚、可用的体验。</em></h2>
-          <p>七个项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示、可以验证的完整版本。</p>
+          <p>七个精选项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示、可以验证的完整版本。</p>
         </section>
 
         <section className="project-section" id="work">
@@ -273,7 +277,7 @@ export function Make(idea) {
           </div>
           <div className="project-grid">
             {projects.map((project) => (
-              <button className={`project-card card-${project.id}`} type="button" key={project.id} onClick={() => setSelected(project)} data-reveal>
+              <button className={`project-card card-${project.id}`} type="button" key={project.id} onPointerMove={updateCardLight} onClick={() => setSelected(project)} data-reveal>
                 <div className="project-image">
                   {project.cover ? (
                     <img src={project.cover} alt="" />
@@ -317,7 +321,7 @@ export function Make(idea) {
             <p>产品构建者、独立游戏开发者，也在探索生成式影像与内容运营。</p>
             <p>我喜欢把复杂信息整理成容易理解的结构，再亲手把方案推进成可以体验的真实作品。</p>
           </div>
-          <div className="about-stats"><span><b>07</b><small>完整案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
+          <div className="about-stats"><span><b>07</b><small>精选案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
         </section>
       </div>
 
@@ -325,7 +329,7 @@ export function Make(idea) {
         <div className="footer-main">
           <div><h2>Zhang Pu Universe<i>.</i></h2><p>设计产品、制作游戏，<br />也用内容与 AI 讲故事。</p></div>
           <div className="footer-links"><a href="#work">作品 ↗</a><a href="#method">方法 ↗</a><a href="#about">关于 ↗</a></div>
-          <div className="footer-links"><a href="#top">回到顶部 ↑</a><span>Shanghai · China</span><span>欢迎通过当前分享渠道联系</span></div>
+          <div className="footer-links"><a href="#top">回到顶部 ↑</a><span>Chengdu · China</span><span>欢迎通过当前分享渠道联系</span></div>
         </div>
         <div className="footer-bottom"><span>© 2026 张朴 · 保持好奇，持续构建。</span><span className="exploring">✦ 正在探索 产品 × 游戏 × AI × 内容</span></div>
       </footer>
@@ -361,32 +365,6 @@ export function Make(idea) {
               <p>{selected.description}</p>
             </div>
             <div className="modal-facts">{selected.facts.map((fact) => <span key={fact}>{fact}</span>)}</div>
-            {selected.playUrl && (
-              <section className="voxel-play" aria-labelledby="voxel-play-title">
-                <div className="voxel-play-heading">
-                  <div>
-                    <small>PLAYABLE BUILD · COZE HOSTING</small>
-                    <h3 id="voxel-play-title">直接进入方块世界。</h3>
-                  </div>
-                  <a href={selected.playUrl} target="_blank" rel="noreferrer">全屏试玩 ↗</a>
-                </div>
-                <div className="voxel-frame">
-                  <iframe
-                    src={selected.playUrl}
-                    title="像素方块世界在线试玩"
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-pointer-lock"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="voxel-controls">
-                  <span><b>移动</b>W A S D</span>
-                  <span><b>视角</b>鼠标移动</span>
-                  <span><b>跳跃</b>空格</span>
-                  <span><b>交互</b>左键放置 · 右键破坏</span>
-                </div>
-              </section>
-            )}
             {selected.gameOverview && (
               <section className="game-overview" aria-labelledby="game-overview-title">
                 <div className="game-intro">
