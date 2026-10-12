@@ -89,8 +89,24 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "cs2",
+    id: "kanshengyi",
     number: "04",
+    category: "AI 产品 / 数据研究",
+    title: "看生意",
+    status: "◈ 本地交互原型 · 持续迭代",
+    summary: "把年报与公告里的复杂信息，整理成可追溯的公司生意图谱。",
+    description: "「看生意」是一套面向非专业研究者的上市公司公开资料研究工具。我从主营业务、经营流程、历年变化和财务口径出发，把年报、定期报告与公告拆成可阅读、可核验、可回到原文页码的事实。当前已以平安银行 2025 年报完成真实公司样例，并建立本地资料导入、主体校验、去重和来源追溯链路。产品不评分、不排名，不构成投资建议。",
+    stack: "AI Product / Information Architecture / Evidence System / React",
+    cover: "/portfolio/kanshengyi-company.png",
+    facts: ["304 份唯一报告资料", "12 家公司资料库", "原文页码可追溯", "平安银行真实样例", "146 项自动检查"],
+    gallery: [
+      { src: "/portfolio/kanshengyi-company.png", alt: "看生意平安银行主营业务研究面板", title: "从业务结构理解公司", note: "把业务分部、客户与产品、运转流程、数据口径和待核验问题组织在同一研究界面。", layout: "wide" },
+      { src: "/portfolio/kanshengyi-search.png", alt: "看生意公司搜索与研究入口", title: "先找公司，再进入研究", note: "入口聚焦公司检索、主营业务和可继续验证的研究问题。", layout: "wide" },
+    ],
+  },
+  {
+    id: "cs2",
+    number: "05",
     category: "产品设计 / 数据内容",
     title: "CS2 Pro Settings",
     status: "◈ 可运行网站",
@@ -107,7 +123,7 @@ const projects: Project[] = [
   },
   {
     id: "relay",
-    number: "05",
+    number: "06",
     category: "电商情报 / AI 产品",
     title: "Relay Growth",
     status: "◈ 卖家验证阶段",
@@ -134,7 +150,7 @@ const projects: Project[] = [
   },
   {
     id: "sound-study",
-    number: "06",
+    number: "07",
     category: "声音设计 / 生成式交互",
     title: "SOUND STUDY 001",
     status: "◈ 实时声音可视化",
@@ -149,7 +165,7 @@ const projects: Project[] = [
   },
   {
     id: "wechat-operations",
-    number: "07",
+    number: "08",
     category: "内容运营 / 公众号",
     title: "鲸鱼的思考",
     status: "◈ 原创内容持续运营",
@@ -267,7 +283,7 @@ export function Make(idea) {
         <section className="manifesto" data-reveal>
           <p className="section-index">01 / SELECTED WORK</p>
           <h2>让复杂问题成为<br /><em>清楚、可用的体验。</em></h2>
-          <p>七个精选项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示、可以验证的完整版本。</p>
+          <p>八个精选项目跨越不同领域，但使用同一套方法：找到核心闭环，建立内容系统，再持续把原型推进到值得展示、可以验证的完整版本。</p>
         </section>
 
         <section className="project-section" id="work">
@@ -321,7 +337,7 @@ export function Make(idea) {
             <p>产品构建者、独立游戏开发者，也在探索生成式影像与内容运营。</p>
             <p>我喜欢把复杂信息整理成容易理解的结构，再亲手把方案推进成可以体验的真实作品。</p>
           </div>
-          <div className="about-stats"><span><b>07</b><small>精选案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
+          <div className="about-stats"><span><b>08</b><small>精选案例</small></span><span><b>END—TO—END</b><small>从定义到实现</small></span><span><b>2026</b><small>持续更新</small></span></div>
         </section>
       </div>
 
